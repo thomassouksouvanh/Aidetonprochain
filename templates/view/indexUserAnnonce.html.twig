@@ -1,0 +1,48 @@
+
+<div class="row">
+    {% for annonce in user.annonces %}
+        <div class="col col-sm col-md col-lg-6 d-flex justify-content-around">
+            <div class="card m-4 {{ cycle(['odd','even'], loop.index0) }} " style="width: 30rem;">
+                <div class="card-body">
+                    <h6 class="text-muted">Publié le:
+                        {{ annonce.createdAt|date('d-m-Y') }}
+                    </h6>
+                    <h5 class="card-title mt-2 mb-1">Titre : {{ annonce.nom }}</h5>
+                    <p class="card-text mb-0">Description :</p>
+                    <p class="card-text mt-0 mb-2">{{ annonce.description}}</p>
+                    <p class="card-text mt-0 mb-0">Type de annonce</p>
+                    <p class="card-text mt-0 mb-2">{{ annonce.type }}</p>
+                    <p class="card-text d-inline mt-0">Localisation : <br>
+                        {{ annonce.zip }} {{ annonce.city }}, {{ annonce.pays }}
+                    </p>
+                        <div class="row mt-2">
+                            {% if app.user and app.user is same as (user) %}
+                                {% if annonce.type == "Annonce aller faire des courses" %}
+                                    <a href="{{ path('annonce_courses_edit', {'slug': annonce.slug}) }}">
+                                        <button class="btn btn-success ml-3 mr-5">Editer</button>
+                                    </a>
+                                    {{ include('annonce/courses/_delete_form.html.twig') }}
+                                {% endif %}
+                                {% if annonce.type == "Annonce aller à la pharmacie" %}
+                                    <a href="{{ path('annonce_pharmacie_edit', {'slug': annonce.slug}) }}">
+                                        <button class="btn btn-success ml-3 mr-5">Editer</button>
+                                    </a>
+                                    {{ include('annonce/pharmacie/_delete-form.html.twig') }}
+                                {% endif %}
+                                {% if annonce.type == "Annonce faire du babysitting" %}
+                                    <a href="{{ path('annonce_babysitting_edit', {'slug': annonce.slug}) }}">
+                                        <button class="btn btn-success ml-3 mr-5">Editer</button>
+                                    </a>
+                                    {{ include('annonce/babysitting/_delete_form.html.twig') }}
+                                {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <h3 class="ml-5">Aucune annonce enregistré</h3>
+        </div>
+    {% endfor %}
+</div>

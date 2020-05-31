@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Initiative{% endblock %}
+
+{% block body %}
+<h4 class="text-center mt-4">Categorie : initiative</h4>
+<div class="card testimonial-card mt-4 mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col col-sm col-md-7 col-lg-8">
+                <div class="text-muted">
+                    <p>Publié le :
+                        {{ initiative.createdAt|date('d-m-Y') }}
+                        {% if app.user and app.user is same as (initiative.user) %}
+                        <a href="{{ path('initiative_edit', {'slug': initiative.slug}) }}">
+                            <button class="btn btn-secondary ml-4">Editer</button>
+                        </a>
+                    </p>
+                    {% endif %}
+                </div>
+                <hr>
+                <p class="card-title font-weight-bold">Nom de l'initiative :</p> {{ initiative.nom }}
+                <hr>
+                <p class="font-weight-bold">Description : </p>{{ initiative.description }}
+                <hr>
+                <p class="font-weight-bold">City : </p>{{ initiative.city }}
+                <hr>
+                <p class="font-weight-bold">Lien de l'initiative : </p>
+                <a href="{{ initiative.link }}" target="_blank">{{ initiative.link }}</a>
+                <hr>
+            </div>
+            <div class="col col-sm col-md-4 col-lg-4">
+                {% if initiative.user.avatar is not null%}
+                    <a href="{{ path('account_user',{'slug':initiative.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/images/avatar/'~ initiative.user.avatar) | imagine_filter('my_thumb') }}"
+                         class="d-block img-thumbnail mx-auto" alt="avatar" title="voir le profil">
+                    </a>
+                {% else %}
+                    <a href="{{ path('account_user',{'slug':initiative.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/logo/Logo.png') | imagine_filter('my_thumb') }}"
+                         class="d-block img-thumbnail mx-auto" alt="default" title="voir le profil">
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="{{ path('initiative_index') }}">
+                    Retour à la liste de toutes les initiatives
+                </a>
+            </div>
+        </div>
+        {% if app.user %}
+        <div class="row">
+            <div class="col">
+                <a href="{{ path('account_user',{'slug':app.user.slug}) }}">Retour à mon profil</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+  {#  {{ include('iHelp/initiative/_delete_form.html.twig') }}#}
+{% endblock %}

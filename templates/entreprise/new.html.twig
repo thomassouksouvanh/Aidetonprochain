@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'entreprise partenaire{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer une entreprise partenaire</h4>
+
+    {{ include('entreprise/_form.html.twig') }}
+
+    <a href="{{ path('entreprise_index') }}">Voir les dernières entreprises partenaire</a>
+{% endblock %}

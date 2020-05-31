@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discuter{% endblock %}
+
+{% block body %}
+<h4 class="text-center mt-4">Categorie : Conversation</h4>
+<div class="card testimonial-card mt-4 mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col col-sm col-md-7 col-lg-8">
+                <div class="text-muted">
+                    <p>Publié le :
+                        {{ discuter.createdAt|date('d-m-Y') }}
+                        {% if app.user and app.user is same as (discuter.user) %}
+                        <a href="{{ path('discuter_edit', {'slug': discuter.slug}) }}">
+                            <button class="btn btn-secondary ml-4">Editer</button>
+                        </a>
+                    </p>
+                    {% endif %}
+                </div>
+                <hr>
+                <p class="card-title font-weight-bold">Sujet de la conversation : :</p> {{ discuter.sujet }}
+                <hr>
+                <p class="font-weight-bold">Identifiant: : </p> {{ discuter.nom }}
+                <hr>
+                <p class="font-weight-bold">Lien de la conversation : </p>
+                <a href="{{ discuter.link }}" target="_blank">{{ discuter.link }}</a>
+                <hr>
+            </div>
+            <div class="col col-sm col-md-4 col-lg-4">
+                {% if discuter.user.avatar is not null%}
+                    <a href="{{ path('account_user',{'slug':discuter.user.slug}) }}">
+                        <img src="{{ asset('build/uploads/images/avatar/'~ discuter.user.avatar) | imagine_filter('my_thumb') }}"
+                             class="d-block img-thumbnail mx-auto" alt="avatar" title="voir le profil">
+                    </a>
+                {% else %}
+                    <a href="{{ path('account_user',{'slug':discuter.user.slug}) }}">
+                        <img src="{{ asset('build/uploads/logo/Logo.png') | imagine_filter('my_thumb') }}"
+                             class="d-block img-thumbnail mx-auto" alt="default" title="voir le profil">
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="{{ path('discuter_index') }}">
+                    Retour à la liste de toutes les conversations
+                </a>
+            </div>
+        </div>
+        {% if app.user %}
+        <div class="row">
+            <div class="col">
+                <a href="{{ path('account_user',{'slug':app.user.slug}) }}">Retour à mon profil</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

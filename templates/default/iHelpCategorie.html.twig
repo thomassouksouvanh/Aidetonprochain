@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div class="row">
+            <div class="col">
+                <img src="{{ asset('build/uploads/logo/jepeuxaider.png') }}" class="logoIhelp mx-auto d-block" alt="jepeuxaider">
+            </div>
+        </div>
+            <p class="article mt-4 mb-5">
+                Vous voulez aider mais vous n'êtes pas sûr(e) de savoir comment faire? Vous pouvez naviguer dans les annonces
+                déjà postées et voir si vous pouvez venir en aide à quelqu'un d'une manière ou d'une autre.
+                Un service particulier que vous voulez rendre? Postez une annonce.
+                Vous pouvez aider à votre échelle: si vous êtes en bonne santé, vous pouvez vous déplacer pour aider quelqu'un,
+                mais vous pouvez tout simplement offrir un peu de votre temps pour donner conseils,discuter,
+                faire découvrir votre hobby pour mieux gérer l'ennui et la solitude.
+            </p>
+        <div class="row d-flex justify-content-around">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('proposition_courses_index') }}">
+                    <div class="card shop"></div>
+                    <h6 class="soustitre mt-3 mb-4">Aller faire les courses</h6>
+                </a>
+            </div>
+           <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('proposition_pharmacie_index') }}">
+                    <div class="card medic"></div>
+                    <h6 class="soustitre mt-3 mb-4">Aller à la pharmacie</h6>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('proposition_babysitting_index') }}">
+                    <div class="card babysitting"></div>
+                    <h6 class="soustitre mt-3 mb-4">Faire du babysitting</h6>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('entreprise_new') }}">
+                    <div class="card entreprise"></div>
+                    <h6 class="soustitre mt-3 mb-4">Entreprise partenaire</h6>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('formation_new') }}">
+                    <div class="card formation"> </div>
+                    <h6 class="soustitre mt-3 mb-4">Formation</h6>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('information_new') }}">
+                    <div class="card information"> </div>
+                    <h6 class="soustitre mt-3 mb-4">Information</h6>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('discuter_new') }}">
+                    <div class="card discuter"></div>
+                    <h6 class="soustitre mt-3 mb-4">Discuter</h6>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('initiative_new') }}">
+                    <div class="card initiative"> </div>
+                    <h6 class="soustitre mt-3 mb-4">Initiative</h6>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <a class="lienIcone" href="{{ path('iHelp_occupation') }}">
+                    <div class="card occupation"> </div>
+                    <h6 class="soustitre mt-3 mb-4">Occupation</h6>
+                </a>
+            </div>
+        </div>
+
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

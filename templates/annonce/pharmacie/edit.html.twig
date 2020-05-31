@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Annonce pharmacie{% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center mt-4 mb-4">Editer l'annonce</h2>
+    <h3 class="text-center mt-4 mb-4">{{ annonce.title }}</h3>
+    {{ include('annonce/pharmacie/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    <div class="row">
+        <div class="col">
+            <h6 class="text-center mt-0">
+                {{ include('annonce/pharmacie/_delete-form.html.twig') }}
+                <a href="{{ path('account_user') }}">Retourner à mon profil</a>
+            </h6>
+        </div>
+    </div>
+
+{% endblock %}

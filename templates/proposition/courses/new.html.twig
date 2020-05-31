@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle proposition de courses{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer mon aide pour aller faire les courses</h4>
+
+    {{ include('proposition/courses/_form.html.twig') }}
+
+    <a href="{{ path('proposition_courses_index') }}">Voir les dernières propositions</a>
+
+{% endblock %}

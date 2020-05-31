@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('initiative_delete', {'slug': initiative.slug}) }}" onsubmit="return confirm('Veuillez confirmer la suppression');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ initiative.id) }}">
+    <button class="btn btn-danger">Supprimer</button>
+</form>

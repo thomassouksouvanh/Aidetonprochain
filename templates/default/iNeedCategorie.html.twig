@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie j'ai besoin d'aide{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <img src="{{ asset('build/uploads/logo/jaibesoindaide.png') }}" class="logoIhelp mx-auto d-block" alt="jepeuxaider">
+        </div>
+    </div>
+        <p class="article mt-4 mb-0 ">
+            Vous êtes seul(e) et personne pour garder vos enfants et vous ne pouvez faire vos courses vous-mêmes?
+            Vous êtes personne à mobilité réduite et vous ne pouvez passez à la pharmacie?
+            Votre devoir de mathématique vous cause des problème? Choisissez l'icône qui représente votre besoin et créez votre annonce!
+        </p>
+        <p class="article mb-5">
+            Seul(e) ou en famille,la plateforme offre également la possibilité de vous divertir en trouvant des propositions de jeux en ligne,
+            d'activités et de challenges. Si vous préférez discuter tout simplement,vous pouvez poster une annonce et
+            trouver quelqu'un avec qui partager.
+        </p>
+
+    <div class="row d-flex justify-content-around">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('annonce_courses_index') }}">
+                <div class="card shop"></div>
+                <h6 class="soustitre mt-3 mb-4">Aller faire les courses</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('annonce_pharmacie_index') }}">
+                <div class="card medic"></div>
+                <h6 class="soustitre mt-3 mb-4">Aller à la pharmacie</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('annonce_babysitting_index') }}">
+                <div class="card babysitting"></div>
+                <h6 class="soustitre mt-3 mb-4">Faire du babysitting</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('entreprise_index') }}">
+                <div class="card entreprise"></div>
+                <h6 class="soustitre mt-3 mb-4">Entreprise partenaire</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('formation_index') }}">
+                <div class="card formation"> </div>
+                <h6 class="soustitre mt-3 mb-4">Formation</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('information_index') }}">
+                <div class="card information"> </div>
+                <h6 class="soustitre mt-3 mb-4">Information</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('discuter_index') }}">
+                <div class="card discuter"></div>
+                <h6 class="soustitre mt-3 mb-4">Discuter</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('initiative_index') }}">
+                <div class="card initiative"> </div>
+                <h6 class="soustitre mt-3 mb-4">Initiative</h6>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('iNeedHelp_occupation') }}">
+                <div class="card occupation"> </div>
+                <h6 class="soustitre mt-3 mb-4">Occupation</h6>
+            </a>
+        </div>
+    </div>
+
+
+{% endblock %}
+

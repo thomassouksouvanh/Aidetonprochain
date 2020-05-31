@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer activité{% endblock %}
+
+{% block body %}
+    <h2 class="text-center mt-4 mb-4">Editer la proposition</h2>
+    <h3 class="text-center mt-4 mb-4">{{ diy.name }}</h3>
+    {{ include('diy/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    <div class="row">
+        <div class="col">
+            <h6 class="text-center mt-0">
+                {{ include('diy/_delete_form.html.twig') }}
+                <a href="{{ path('account_user',{'slug':app.user.slug}) }}">Retourner à mon profil</a>
+            </h6>
+        </div>
+    </div>
+{% endblock %}

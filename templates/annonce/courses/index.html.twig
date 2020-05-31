@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste annonce courses{% endblock %}
+
+{% block body %}
+    {% include('/default/bandeaujaibesoindaide.html.twig') %}
+<div class="row">
+        <button class="btn postProposition">
+            <a href="{{ path('annonce_courses_new') }}" >
+                Poster une annonce
+            </a>
+        </button>
+</div>
+    <div class="row">
+            {% for annonce in annonces %}
+                <div class="col col-sm-6 col-md-4 col-lg-3 d-flex justify-content-around">
+                    <div class="card {{ cycle(['odd','even'], loop.index0) }} m-4 " style="width: 15rem;">
+                        {% if annonce.user.avatar is not null%}
+                            <a href="{{ path('account_user',{'slug':annonce.user.slug}) }}">
+                                <img src="{{ asset('build/uploads/images/avatar/'~ annonce.user.avatar) | imagine_filter('thumb') }}"
+                                 class="card-img-avatar mx-auto mt-2" alt="user image" style="width: 100px" title="voir le profil">
+                            </a>
+                        {% else %}
+                            <a href="{{ path('account_user',{'slug':annonce.user.slug}) }}">
+                                <img src="{{ asset('build/uploads/logo/Logo.png') }}"
+                                     class="card-img mx-auto mt-1" style="width: 100px;" alt="default" title="voir le profil">
+                            </a>
+                        {% endif %}
+                        {% if app.user and app.user is same as (annonce.user) %}
+                            <p class="control">
+                                <a href="{{ path('annonce_courses_edit', {'slug': annonce.slug}) }}"><i class="fas fa-edit"></i></a>
+                                <a href="{{ path('annonce_courses_new') }}"><i class="fas fa-plus-circle"></i></a>
+                            </p>
+                        {% endif %}
+                        <div class="card-body">
+                            <p>
+                                <small class="text-muted">Publié le:
+                                    {{ annonce.createdAt|date('d-m-Y') }}
+                                </small>
+                                <a href="{{ path('annonce_courses_show', {'slug': annonce.slug}) }}"><i class="fas fa-folder-open {{ cycle(['fa_odd','fa_even'], loop.index0) }} ml-2"></i></a>
+                            </p>
+                            <h5 class="card-title mt-0 mb-1">{{ annonce.nom }}</h5>
+                            <p class="card-text mb-0">Description :</p>
+                            <p class="card-text mt-0 mb-1">{{ annonce.description}}</p>
+                            <p class="card-text d-inline mt-0">Localisation :
+                                {{ annonce.zip }} {{ annonce.city }}, {{ annonce.pays }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <h3 class="text-center ml-5">Aucune annonce enregistré</h3>
+                </div>
+            {% endfor %}
+
+    </div>
+    <div class="row align-items-center justify-content-center">
+        {{ knp_pagination_render(annonces) }}
+    </div>
+  {% endblock %}
+

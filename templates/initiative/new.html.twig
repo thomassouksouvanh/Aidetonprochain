@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'une nouvelle initiative{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">Proposer une initiative</h4>
+
+    {{ include('initiative/_form.html.twig') }}
+
+    <a href="{{ path('initiative_index') }}">Voir les dernières initiatives</a>
+{% endblock %}

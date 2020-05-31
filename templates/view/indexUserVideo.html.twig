@@ -1,0 +1,47 @@
+<div class="row">
+    {% for video in user.videos %}
+        <div class="col col-sm col-md col-lg-6 d-flex justify-content-around">
+            <div class="card {{ cycle(['odd','even'], loop.index0) }} m-4 " style="width: 30rem;">
+                <div class="card-body">
+                    <h6 class="text-muted">Publié le:
+                        {{ video.createdAt|date('d-m-Y') }}
+                    </h6>
+                    <h5 class="card-title mt-2 mb-1">Titre : {{ video.nom }}</h5>
+                    <p class="card-text mb-0">Description :</p>
+                    <p class="card-text mt-0 mb-2">{{ video.description}}</p>
+                    <p class="card-text mt-0 mb-0">Type de video</p>
+                    <p class="card-text mt-0 mb-2">{{ video.type }}</p>
+                    <p class="card-text mt-0 mb-2">Plateforme</p>
+                    <p class="card-text mt-0 mb-2">{{ video.support }}</p>
+                    <p class="card-text d-inline mt-0">Lien : {{ video.link }}</p>
+                    <div class="row mt-2">
+                        {% if app.user and app.user is same as (user) %}
+                            {% if video.type == "FLASHMOB" %}
+                                <a href="{{ path('flashmob_edit', {'slug': video.slug}) }}">
+                                    <button class="btn btn-success ml-3 mr-5">Editer</button>
+                                </a>
+                              {{ include('flashmob/_delete_form.html.twig') }}
+                            {% endif %}
+                            {% if video.type == "STORIES" %}
+                                <a href="{{ path('stories_edit', {'slug': video.slug}) }}">
+                                    <button class="btn btn-success ml-3 mr-5">Editer</button>
+                                </a>
+                                {{ include('stories/_delete_form.html.twig') }}
+                            {% endif %}
+                            {% if video.type == "CHALLENGE" %}
+                                <a href="{{ path('challenge_edit', {'slug': video.slug}) }}">
+                                    <button class="btn btn-success ml-3 mr-5">Editer</button>
+                                </a>
+                               {{ include('challenge/_delete_form.html.twig') }}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <h3 class="ml-5">Aucune video enregistré</h3>
+        </div>
+    {% endfor %}
+</div>

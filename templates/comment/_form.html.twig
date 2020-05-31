@@ -1,0 +1,6 @@
+{{ form_start(form, {'attr': {'id': 'comment'}}) }}
+{{ form_row(form.content, {'attr': {'class': 'formComment', 'id':'content'}}) }}
+{{ form_row(form.rating, {'attr': {'class': 'formComment', 'id':'rating'}}) }}
+<button id="test" class="btn search" type="submit" >{{ button_label|default('Commenter') }}</button>
+{{ form_end(form) }}
+

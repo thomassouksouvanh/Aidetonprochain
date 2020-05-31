@@ -1,0 +1,13 @@
+{{ form_start(form, {'attr': {'id': 'discuter'}}) }}
+<div class="error-message text-center mb-2"></div>
+<div class="alert_error_link"></div>
+    {{ form_row(form.nom, {'attr': {'class': 'formMain', 'id':'link'}}) }}
+    {{ form_row(form.sujet, {'attr': {'class': 'formMain'}}) }}
+    {{ form_row(form.link, {'attr': {'class': 'formMainLink','id' : 'link'}}) }}
+
+<div class="row">
+        <button class="continue">{{ button_label|default('Continuer') }}</button>
+</div>
+{{ form_end(form) }}
+
+

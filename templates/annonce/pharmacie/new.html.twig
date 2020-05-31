@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle annonce pour aller à la pharmacie{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">annonce d'aide pour aller à la pharmacie</h4>
+
+    {{ include('annonce/pharmacie/_form.html.twig') }}
+
+    <a href="{{ path('annonce_pharmacie_index') }}">Voir les dernières annonces</a>
+
+{% endblock %}

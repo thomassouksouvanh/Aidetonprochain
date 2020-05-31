@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'une nouvelle information{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">Création d'une nouvelle Information</h4>
+
+    {{ include('information/_form.html.twig') }}
+
+    <a href="{{ path('information_index') }}">Voir les dernières informations</a>
+{% endblock %}

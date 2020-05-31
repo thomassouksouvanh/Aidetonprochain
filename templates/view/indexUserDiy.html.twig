@@ -1,0 +1,35 @@
+
+<div class="row">
+    {% for diy in user.diys %}
+        <div class="col col-sm col-md col-lg-6 d-flex justify-content-around">
+            <div class="card m-4 {{ cycle(['odd','even'], loop.index0) }} " style="width: 30rem;">
+                <div class="card-body">
+                    <h6 class="text-muted">Publié le :
+                        {{ diy.createdAt|date('d-m-Y') }}
+                    </h6>
+                    <h5 class="card-title mt-2 mb-1">Nom : {{ diy.nom }}</h5>
+                    <p class="card-text mb-0">Description :</p>
+                    <p class="card-text mt-0 mb-1">{{ diy.description }}</p>
+                    <p class="card-text mt-0 mb-1">Code postal : {{ diy.zip }}</p>
+                    <p class="card-text d-inline mt-0">Lien : {{ diy.link }}</p>
+
+                    <div class="row mt-2">
+                        {% if app.user and app.user is same as (user) %}
+                        <a href="{{ path('diy_edit', {'slug': diy.slug}) }}">
+                            <button class="btn btn-success ml-3 mr-5">Editer</button>
+                        </a>
+                        {{ include('diy/_delete_form.html.twig') }}
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="row">
+            <h3 class="ml-5">Aucune activité enregistré</h3>
+        </div>
+    {% endfor %}
+</div>
+

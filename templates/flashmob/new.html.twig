@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}proposition de flashmob{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer un flashmob</h4>
+
+    {{ include('flashmob/_form.html.twig') }}
+
+    <a href="{{ path('flashmob_index') }}">Voir les derniers flahmob</a>
+{% endblock %}
+

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}storie{% endblock %}
+
+{% block body %}
+        <h4 class="text-center mt-4">Categorie : storie</h4>
+        <div class="card testimonial-card mt-4 mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col col-sm col-md-7 col-lg-8">
+                        <div class="text-muted">
+                            <p>Publié le :
+                                {{ video.createdAt ? video.createdAt|date('Y-m-d H:i:s') : '' }}
+                                {% if app.user and app.user is same as (video.user) %}
+                                <a href="{{ path('stories_edit', {'slug': video.slug}) }}">
+                                    <button class="btn btn-secondary ml-4">Editer</button>
+                                </a>
+                            </p>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <p class="card-title font-weight-bold">Titre de la vidéo :</p> {{ video.nom }}
+                        <hr>
+                        <p class="font-weight-bold">Catégorie de la vidéo : </p> {{ video.type }}
+                        <hr>
+                        <p class="font-weight-bold">Plateforme : </p> {{ video.support }}
+                        <hr>
+                        <p class="font-weight-bold">Description : </p> {{ video.description }}
+                        <hr>
+                        <p class="font-weight-bold">Lien de la vidéo : </p>
+                        <a href="{{ video.link }}" target="_blank">{{ video.link }}</a>
+                        <hr>
+                    </div>
+                    <div class="col col-sm col-md-4 col-lg-4">
+                        {% if video.user.avatar is not null%}
+                        <a href="{{ path('account_user',{'slug': video.user.slug}) }}" class="mx-auto">
+                            <img src="{{ asset('build/uploads/images/avatar/'~ video.user.avatar) | imagine_filter('my_thumb') }}"
+                                 class="d-block img-thumbnail mx-auto" alt="avatar" title="voir le profil">
+                        </a>
+                        {% else %}
+                            <a href="{{ path('account_user',{'slug': video.user.slug}) }}" class="mx-auto">
+                            <img src="{{ asset('build/uploads/logo/Logo.png') | imagine_filter('my_thumb') }}"
+                                 class="d-block img-thumbnail mx-auto" alt="default" title="voir le profil">
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ path('stories_index') }}">
+                            Retour à la liste de toutes les stories
+                        </a>
+                    </div>
+                </div>
+                {% if app.user %}
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ path('account_user',{'slug':app.user.slug}) }}">Retour à mon profil</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+
+

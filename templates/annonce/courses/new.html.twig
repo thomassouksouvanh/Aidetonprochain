@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle annonce de courses{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">annonce d'aide pour aller faire les courses</h4>
+
+    {{ include('annonce/courses/_form.html.twig') }}
+
+    <a href="{{ path('annonce_courses_index') }}">Voir les dernières annonces</a>
+{% endblock %}
+
+
+

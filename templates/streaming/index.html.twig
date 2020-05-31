@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}streaming index{% endblock %}
+
+{% block body %}
+    {% include('/default/bandeaujaibesoindaide.html.twig') %}
+<div class="row">
+    {% for streaming in streamings %}
+        <div class="col col-sm col-md-6 col-lg-4 col-xl-3 d-flex justify-content-around">
+            <div class="card {{ cycle(['odd','even'], loop.index0) }} m-4 " style="width: 15rem;">
+                {% if streaming.user.avatar is not null %}
+                    <a href="{{ path('account_user',{'slug':streaming.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/images/avatar/'~ streaming.user.avatar) | imagine_filter('thumb') }}"
+                         class="card-img-avatar mx-auto mt-2" alt="user image" style="width: 100px" title="voir le profil">
+                    </a>
+                {% else %}
+                    <a href="{{ path('account_user',{'slug':streaming.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/logo/Logo.png') }}"
+                         class="card-img mx-auto mt-1" style="width: 100px;" alt="user image" title="voir le profil">
+                    </a>
+                {% endif %}
+                {% if app.user and app.user is same as (streaming.user) %}
+                <p class="control">
+                    <a href="{{ path('streaming_edit', {'slug': streaming.slug}) }}"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('streaming_new') }}"><i class="fas fa-plus-circle"></i></a>
+                </p>
+                {% endif %}
+                <div class="card-body">
+                    <p>
+                        <small class="text-muted">Publié le:
+                            {{ streaming.createdAt|date('d-m-Y') }}
+                        </small>
+                        <a href="{{ path('streaming_show', {'slug': streaming.slug}) }}"><i class="fas fa-folder-open {{ cycle(['fa_odd','fa_even'], loop.index0) }} ml-2"></i></a>
+                    </p>
+                    <h5 class="card-title mt-0 mb-1">{{ streaming.nom }}</h5>
+                    <p class="card-text mb-0">Description :</p>
+                    <p class="card-text mt-0 mb-1">{{ streaming.description}}</p>
+                    <p class="card-text d-inline mt-0">
+                        <a href="{{ streaming.link }}" target="blank">Voir le streaming</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <h3 class="text-center ml-5">Aucune streaming enregistré</h3>
+        </div>
+    {% endfor %}
+</div>
+    <div class="row align-items-center justify-content-center">
+        {{ knp_pagination_render(streamings) }}
+    </div>
+{% endblock %}

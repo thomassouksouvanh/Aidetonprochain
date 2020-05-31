@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'un nouveau streaming{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer une vidéo en streaming</h4>
+
+    {{ include('streaming/_form.html.twig') }}
+
+    <a href="{{ path('streaming_index') }}">Voir les dernières streaming</a>
+{% endblock %}

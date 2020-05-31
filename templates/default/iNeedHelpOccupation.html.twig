@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sous catégorie j'ai besoin d'aide{% endblock %}
+
+{% block body %}
+{% include('/default/bandeaujaibesoindaide.html.twig') %}
+    <div class="row d-flex justify-content-around">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('gaming_index') }}">
+                <div class="card gaming"></div>
+                <h6 class="soustitre mt-3 mb-4">Jeux</h6>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('streaming_index') }}">
+                <div class="card streaming"></div>
+                <h6 class="soustitre mt-3 mb-4">Séries / films</h6>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('diy_index') }}">
+                <div class="card activity"></div>
+                <h6 class="soustitre mt-3 mb-4">DIY / Activités maison</h6>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('challenge_index') }}">
+                <div class="card challenge"></div>
+                <h6 class="soustitre mt-3 mb-4">Challenges</h6>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('stories_index') }}">
+                <div class="card stories"> </div>
+                <h6 class="soustitre mt-3 mb-4">Stories</h6>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('flashmob_index') }}">
+                <div class="card flashMob"> </div>
+                <h6 class="soustitre mt-3 mb-4">Flash Mob</h6>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="{{ path('quiz_index') }}">
+                <div class="card quiz"></div>
+                <h6 class="soustitre mt-3 mb-4">Quiz</h6>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a class="lienIcone" href="">
+                <div class="card concours"> </div>
+                <h6 class="soustitre mt-3 mb-4">concours</h6>
+            </a>
+        </div>
+    </div>
+
+
+{% endblock %}
+

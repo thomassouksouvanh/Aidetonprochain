@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'une nouvelle partie de jeu{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer une partie de jeu</h4>
+
+    {{ include('gaming/_form.html.twig') }}
+
+    <a href="{{ path('gaming_index') }}">Voir les dernières parties de jeux</a>
+{% endblock %}

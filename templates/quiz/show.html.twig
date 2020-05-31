@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block body %}
+    <h4 class="text-center mt-4">Categorie : quiz</h4>
+    <div class="card testimonial-card mt-4 mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col col-sm col-md-7 col-lg-8">
+                    <div class="text-muted">
+                        <p>Publié le :
+                            {{ quiz.createdAt|date('d-m-Y') }}
+                            {% if app.user and app.user is same as (quiz.user) %}
+                            <a href="{{ path('quiz_edit', {'slug': quiz.slug}) }}">
+                                <button class="btn btn-secondary ml-4">Editer</button>
+                            </a>
+                        </p>
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <p class="card-title font-weight-bold">Nom du quiz :</p> {{ quiz.nom }}
+                    <hr>
+                    <p class="font-weight-bold">Description: </p>{{ quiz.description }}
+                    <hr>
+                    <p class="font-weight-bold">Lien du jeu : </p>
+                    <a href="{{ quiz.link }}" target="_blank">{{ quiz.link }}</a>
+                    <hr>
+                </div>
+                <div class="col col-sm col-md-4 col-lg-4">
+                    {% if quiz.user.avatar is not null%}
+                    <a href="{{ path('account_user',{'slug':quiz.user.slug}) }}">
+                        <img src="{{ asset('build/uploads/images/avatar/'~ quiz.user.avatar) | imagine_filter('my_thumb') }}"
+                             class="d-block img-thumbnail mx-auto" alt="avatar">
+                    </a>
+                    {% else %}
+                        <a href="{{ path('account_user',{'slug':quiz.user.slug}) }}">
+                            <img src="{{ asset('build/uploads/logo/Logo.png') | imagine_filter('my_thumb') }}"
+                                 class="d-block img-thumbnail mx-auto" alt="default">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="{{ path('quiz_index') }}">
+                        Retour à la liste de tous les quizz
+                    </a>
+                </div>
+            </div>
+            {%  if app.user %}
+            <div class="row">
+                <div class="col">
+                    <a href="{{ path('account_user',{'slug':app.user.slug}) }}">Retour à mon profil</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+ {#   {{ include('iHelp/quiz/_delete_form.html.twig') }}#}
+{% endblock %}

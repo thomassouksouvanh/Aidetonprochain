@@ -1,0 +1,33 @@
+
+    <div class="row">
+        {% for information in user.information %}
+        <div class="col col-sm col-md col-lg-6 d-flex justify-content-around">
+            <div class="card {{ cycle(['odd','even'], loop.index0) }} m-4 " style="width: 30rem;">
+                    <div class="card-body">
+                        <h6 class="text-muted">Publié le:
+                            {{ information.createdAt|date('d-m-Y') }}
+                        </h6>
+                        <h5 class="card-title mt-0 mb-1">{{ information.nom }}</h5>
+                        <p class="card-text mb-0">Description :</p>
+                        <p class="card-text mt-0 mb-2">{{ information.description }}</p>
+                        <p class="card-text d-inline mt-0">
+                            <a href="{{ information.link }}">Voir l'information</a>
+                        </p>
+                        <div class="row mt-2">
+                            {% if app.user and app.user is same as (user) %}
+                                <a href="{{ path('information_edit', {'slug': information.slug}) }}">
+                                    <button class="btn btn-success ml-3 mr-5">Editer</button>
+                                </a>
+                                {{ include('information/_delete_form.html.twig') }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <h3 class="ml-5">Aucun information enregistré</h3>
+            </div>
+        {% endfor %}
+    </div>
+

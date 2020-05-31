@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition de challenge{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer un challenge</h4>
+
+    {{ include('challenge/_form.html.twig') }}
+
+    <a href="{{ path('challenge_index') }}">Voir les derniers challenges</a>
+{% endblock %}
+

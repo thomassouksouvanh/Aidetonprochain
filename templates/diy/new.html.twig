@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'une activité{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer une activité</h4>
+
+    {{ include('diy/_form.html.twig') }}
+
+    <a href="{{ path('diy_index') }}">Voir les dernières activités</a>
+{% endblock %}

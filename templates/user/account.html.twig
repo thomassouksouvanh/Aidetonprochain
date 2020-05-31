@@ -1,0 +1,403 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    profil {{ user.fullname}}
+{% endblock %}
+
+{% block body %}
+    <div class="container emp-profile">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        {%  if user.avatar == null %}
+                            <img src="{{ asset('/build/uploads/logo/logo-aidetonvoisin-inversé.png') }} "
+                                style="width: 200px;" alt="defaultAvatar"/>
+                        {% else  %}
+                            <img src="{{ asset('/build/uploads/images/avatar/'~user.avatar) |
+                                imagine_filter('my_thumb') }}" alt="{{ user.avatar }}">
+                        {%  endif %}
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            {{ user.nom }} {{ user.prenom }}
+                        </h5>
+                        <h6>
+                            {{ user.username }}
+                        </h6>
+                            {%  if comments | length > 0 %}
+
+                                    <h5 class="profile-rating">Note Attribuée par d'autre utilisateur<span> /5</span></h5>
+
+
+                            {% else %}
+                                <h5 class="profile-rating">Cet utilisateur n'a pas encore reçu de commentaire</h5>
+                            {% endif %}
+
+
+
+                        {% if app.user and app.user is same as (user) %}
+                        <div class="btn ">
+                            <a href="{{ path('user_account_edit',{'slug' : user.slug}) }}">
+                                <i class="fas fa-user-edit fa-lg"></i>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>Complement d'adresse</p>
+                        <div></div>
+                        <p>Petite description</p>
+                        <div class="description">
+                            {{user.description | raw }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                               aria-controls="home" aria-selected="true">Annonces et propositions</a><br>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="false">Divertissement</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab1" data-toggle="tab" href="#profile1" role="tab"
+                               aria-controls="profile1" aria-selected="false">divers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile2" role="tab"
+                               aria-controls="profile2" aria-selected="false">Videos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Annonces</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.annonces | length }}
+                                    <i class="fas fa-eye ml-3" data-toggle="modal"
+                                        data-target=".bd-example-modal-lg-annonce">
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Propositions</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.propositions | length }}
+                                    <i class="fas fa-eye ml-3"  data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-proposition">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Jeux</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.gamings | length }}
+                                    <i class="fas fa-eye ml-3" data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-gaming">
+                                    </i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Conversation</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.discuters | length }}
+                                    <i class="fas fa-eye ml-3"  data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-discuter">
+                                    </i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Streaming</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.streamings | length }}
+                                    <i class="fas fa-eye ml-3" data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-streaming">
+                                    </i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Quiz</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.quizzes | length }}
+                                    <i class="fas fa-eye ml-3" data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-quiz">
+                                    </i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Formation</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.formations | length }}
+                                    <i class="fas fa-eye ml-3" data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-formation">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile-tab1">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Information</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ user.information | length }}
+                                        <i class="fas fa-eye ml-3" data-toggle="modal"
+                                           data-target=".bd-example-modal-lg-information">
+                                        </i>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Activité</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ user.diys | length }}
+                                        <i class="fas fa-eye ml-3" data-toggle="modal"
+                                           data-target=".bd-example-modal-lg-diy">
+                                        </i>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Initiative</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ user.initiatives | length }}
+                                        <i class="fas fa-eye ml-3" data-toggle="modal"
+                                           data-target=".bd-example-modal-lg-initiative">
+                                        </i>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Entreprise Partenaire</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ user.entreprises | length }}
+                                        <i class="fas fa-eye ml-3" data-toggle="modal"
+                                           data-target=".bd-example-modal-lg-entreprise">
+                                        </i>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Videos</label>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ user.videos | length }}
+                                    <i class="fas fa-eye ml-3" data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-video">
+                                    </i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Concours (en cours de reflexion)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <i class="fas fa-eye ml-3" data-toggle="modal"
+                                       data-target=".bd-example-modal-lg-concours">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <hr>
+
+    {% for comment in comments %}
+        <div class="media-list mt-4">
+            <div class="media">
+                <div class="col-md-2 col-lg-2">
+                <small class="text-muted">{{ comment.createdAt | date('d/m/Y') }}</small>
+                    {%  if comment.author.avatar == null %}
+                        <a href="{{ path('account_user',{'slug':comment.author.slug}) }}"><img src="{{ asset('/build/uploads/logo/logo-aidetonvoisin-inversé.png') | imagine_filter('thumb') }} "
+                             style="width: 100px;" alt="defaultAvatar"/>
+                        </a>
+                    {% else  %}
+                    <a href="{{ path('account_user',{'slug':comment.author.slug}) }}">
+                        <img src="{{ asset('/build/uploads/images/avatar/'~comment.author.avatar) |
+                        imagine_filter('thumb') }}" style="width: 100px;" alt="{{ user.avatar }}" class="commentAvatar">
+                    </a>
+                    {%  endif %}
+                    <div class="text mt-3">{{ comment.author.fullname}}</div>
+                </div>
+                <div class="col-md-10 col-lg-10">
+                    <p class="float-right mr-2">
+                        {% for i in 1..5 %}
+                            {% if i <= comment.rating %}
+                                <i class="fas fa-star"></i>
+                            {% else %}
+                                <i class="far fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                <div class="media-body">
+                    <p class="mt-3">
+                        {{ comment.content}}
+                    </p>
+                </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+
+    {{ form_start(form, {'attr': {'id': 'comment'}}) }}
+    {{ form_row(form.content, {'attr': {'class': 'formComment', 'id':'content'}}) }}
+    {{ form_row(form.rating, {'attr': {'class': 'formComment', 'id':'rating'}}) }}
+    <button id="test" class="btn search" type="submit" >{{ button_label|default('Commenter') }}</button>
+    {{ form_end(form) }}
+
+    <!-- Concours modal -->
+    <div class="modal fade bd-example-modal-lg-concours" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <!-- Video modal -->
+    <div class="modal fade bd-example-modal-lg-video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserVideo.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Entreprise modal -->
+    <div class="modal fade bd-example-modal-lg-entreprise" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserEntreprise.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Initiative modal -->
+    <div class="modal fade bd-example-modal-lg-initiative" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserInitiative.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Diy modal -->
+    <div class="modal fade bd-example-modal-lg-diy" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserDiy.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Information modal -->
+    <div class="modal fade bd-example-modal-lg-information" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserInformation.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Formation modal -->
+    <div class="modal fade bd-example-modal-lg-formation" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserFormation.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Streaming modal -->
+    <div class="modal fade bd-example-modal-lg-streaming" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserStreaming.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Quiz modal -->
+    <div class="modal fade bd-example-modal-lg-quiz" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserQuiz.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Annonce modal -->
+    <div class="modal fade bd-example-modal-lg-annonce" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserAnnonce.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Proposition modal -->
+    <div class="modal fade bd-example-modal-lg-proposition" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserProposition.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Gaming modal -->
+    <div class="modal fade bd-example-modal-lg-gaming" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserGaming.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- Discuter modal -->
+    <div class="modal fade bd-example-modal-lg-discuter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% include 'view/indexUserDiscuter.html.twig' %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+

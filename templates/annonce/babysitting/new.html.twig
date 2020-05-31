@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle annonce pour faire du babysitting{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">annonce d'aide pour faire du babysitting</h4>
+
+    {{ include('annonce/babysitting/_form.html.twig') }}
+
+    <a href="{{ path('annonce_babysitting_index') }}">Voir les dernières annonces</a>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Flashmob liste{% endblock %}
+
+{% block body %}
+    {% include('/default/bandeaujaibesoindaide.html.twig') %}
+    <div class="row">
+        {% for flashmob in videos %}
+            <div class="col col-sm col-md-6 col-lg-4 col-xl-4 d-flex justify-content-around">
+                <div class="card {{ cycle(['odd','even'], loop.index0) }} m-4 " style="width: 30rem;">
+                    {% if flashmob.user.avatar is not null %}
+                    <a href="{{ path('account_user',{'slug': flashmob.user.slug}) }}" class="mx-auto">
+                        <img src="{{ asset('build/uploads/images/avatar/'~ flashmob.user.avatar) | imagine_filter('thumb') }}"
+                             class="card-img-avatar mx-auto mt-2" alt="user image" style="width: 100px">
+                    </a>
+                    {% else %}
+                        <a href="{{ path('account_user',{'slug': flashmob.user.slug}) }}" class="mx-auto">
+                        <img src="{{ asset('build/uploads/logo/Logo.png') }}"
+                             class="card-img mx-auto mt-1" style="width: 100px;" alt="user image">
+                        </a>
+                    {% endif %}
+                    {% if app.user and app.user is same as (flashmob.user) %}
+                    <p class="control">
+                        <a href="{{ path('flashmob_edit', {'slug': flashmob.slug}) }}"><i class="fas fa-edit m-1 "></i></a>
+                        <a href="{{ path('flashmob_new') }}"><i class="fas fa-plus-circle m-1"></i></a>
+                    </p>
+                    {% endif %}
+                    <div class="card-body ">
+                        <p>
+                            <small class="text-muted">Publié le:
+                                {{ flashmob.createdAt|date('d-m-Y') }}
+                            </small>
+                            <a href="{{ path('flashmob_show', {'slug': flashmob.slug}) }}">
+                                <i class="fas fa-folder-open {{ cycle(['fa_odd','fa_even'], loop.index0) }} ml-2"></i>
+                            </a>
+                        </p>
+                        <h5 class="card-title mt-0 mb-1">{{ flashmob.nom }}</h5>
+                        <p class="card-text mt-0 mb-1">
+                            Plateforme : {{ flashmob.support }}
+                        </p>
+                        <p class="mb-0">Description :</p>
+                        <p class="card-text mt-0 mb-1">{{ flashmob.description }}</p>
+                        <p class="card-text mt-0 mb-0">
+                            <a href="{{ flashmob.link }}" target="blank">Voir la vidéo</a>
+                        </p>
+                        <div class="embed-responsive embed-responsive-16by9 mt-3 mb-0">
+                            {% if flashmob.support == "Youtube"  %}
+                                <iframe class="embed-responsive-item " src="{{ flashmob.link | replace({'watch?v=':'embed/'}) }}" allowfullscreen></iframe>
+                            {% else %}
+                                <iframe class="embed-responsive-item " src="{{ flashmob.link }}" allowfullscreen></iframe>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row mx-auto">
+                <h3 class="text-center ml-5">Aucun flashmob enregistré</h3>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row align-items-center justify-content-center">
+        {{ knp_pagination_render(videos) }}
+    </div>
+{% endblock %}

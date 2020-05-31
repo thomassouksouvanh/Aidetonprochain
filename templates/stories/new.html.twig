@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'une histoire'{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer une histoire</h4>
+
+    {{ include('stories/_form.html.twig') }}
+
+    <a href="{{ path('stories_index') }}">Voir les dernieres stories</a>
+{% endblock %}
+

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle proposition d'aller a la pharmacie{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer mon aide pour aller à la pharmacie</h4>
+
+    {{ include('proposition/pharmacie/_form.html.twig') }}
+
+    <a href="{{ path('proposition_pharmacie_index') }}">Voir les dernières propositions</a>
+{% endblock %}

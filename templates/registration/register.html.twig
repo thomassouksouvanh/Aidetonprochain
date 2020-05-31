@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription aide ton voisin{% endblock %}
+
+{% block body %}
+    {% include 'partial/header.html.twig'%}
+    <h5 class="d-flex justify-content-center mt-4 mb-4">Veuillez vous inscrire afin de pouvoir aider vos proche ou autre</h5>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.nom, {'attr': {'class': 'formMain'}}) }}
+        {{ form_row(registrationForm.prenom, {'attr': {'class': 'formMain'}}) }}
+        {{ form_row(registrationForm.email, {'attr': {'class': 'formMain'}}) }}
+        {{ form_row(registrationForm.plainPassword.first, {'attr': {'class': 'formMain'}}) }}
+        {{ form_row(registrationForm.plainPassword.second, {'attr': {'class': 'formMain'}}) }}
+    <div class="agrement ">
+        <p class="article"> En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans <br>
+            le cadre de la demande de #aidetonvoisin.
+            Pour en savoir plus allez sur le lien suivant: <a href="{{ path('diclaimer') }}">ICI</a>
+        </p>
+    </div>
+
+    <div class="text-center mt-3 mr-3">
+            {{ form_row(registrationForm.agreeTerms) }}
+    </div>
+        <button id="submit" class="btn postProposition d-flex justify-content-center mt-0">S'enregistrer</button>
+    {{ form_end(registrationForm) }}
+
+{% endblock %}

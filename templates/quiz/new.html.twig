@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition d'un quiz{% endblock %}
+
+{% block body %}
+    <h4 class="titlePage mt-5 mb-5">proposer un quiz</h4>
+
+    {{ include('quiz/_form.html.twig') }}
+
+    <a href="{{ path('quiz_index') }}">Voir les derniers quiz</a>
+
+{% endblock %}

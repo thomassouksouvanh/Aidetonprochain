@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gaming index{% endblock %}
+
+{% block body %}
+    {% include('/default/bandeaujaibesoindaide.html.twig') %}
+    <div class="row">
+        {% for gaming in gamings %}
+            <div class="col col-sm col-md-6 col-lg-4 col-xl-3 d-flex justify-content-around">
+                <div class="card {{ cycle(['odd','even'], loop.index0) }} m-4 " style="width: 15rem;">
+                    {% if gaming.user.avatar is not null %}
+                        <a href="{{ path('account_user',{'slug':gaming.user.slug}) }}">
+                        <img src="{{ asset('build/uploads/images/avatar/'~ gaming.user.avatar) | imagine_filter('thumb') }}"
+                             class="card-img-avatar mx-auto mt-2" alt="user image" style="width: 100px" title="voir profil">
+                        </a>
+                    {% else %}
+                        <a href="{{ path('account_user',{'slug':gaming.user.slug}) }}">
+                        <img src="{{ asset('build/uploads/logo/Logo.png') }}" class="card-img mx-auto mt-1" style="width: 100px;" alt="user image" title="voir profil">
+                        </a>
+                    {% endif %}
+                    {% if app.user and app.user is same as (gaming.user) %}
+                        <p class="control">
+                            <a href="{{ path('gaming_edit', {'slug': gaming.slug}) }}"><i class="fas fa-edit m-1"></i></a>
+                            <a href="{{ path('gaming_new') }}"><i class="fas fa-plus-circle m-1"></i></a>
+                        </p>
+                    {% endif %}
+                    <div class="card-body">
+                    <p>
+                        <small class="text-muted">Publié le:
+                            {{ gaming.createdAt|date('d-m-Y') }}
+                        </small>
+                        <a href="{{ path('gaming_show', {'slug': gaming.slug}) }}"><i class="fas fa-folder-open {{ cycle(['fa_odd','fa_even'], loop.index0) }} ml-2"></i></a>
+                    </p>
+                        <h5 class="card-title mb-2">{{ gaming.nom }}</h5>
+                        <p class="card-text">Plateforme:  {{ gaming.type }}</p>
+                        <a href="{{ gaming.link }}" target="blank">Voir la partie de jeu</a>
+                    </div>
+
+                </div>
+            </div>
+
+        {% else %}
+            <div class="row">
+                <h3 class="text-center ml-5">Aucune partie de jeux enregistré</h3>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row align-items-center justify-content-center">
+        {{ knp_pagination_render(gamings) }}
+    </div>
+{% endblock %}

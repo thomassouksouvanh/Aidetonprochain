@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}aide ton voisin choisissez une option!{% endblock %}
+
+{% block body %}
+    {% include 'partial/header.html.twig'%}
+    <div class="row">
+        <div class="col">
+            <div class="article mt-4 mb-5 ">
+                <p>
+                    A plusieurs ou seul, le confinement peut représenter des difficultés.
+                    Dures à surmonter sans aide extérieure, cet outil vous permettra de vous mettre en lien avec ce dont vous avez besoin.
+                    Si vous souhaitez participer en donnant de votre temps pour aider, ou pour recevoir de l'aide,
+                    cette plateforme vous aidera à trouver chaussure à votre pied.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="titleChooseOption mb-5">
+        <h4>
+            Veuillez choisir entre ces deux options pour pouvoir survivre:
+        </h4>
+    </div>
+    <div class="row mb-5">
+        <div class="col-6 col-md-6 mx-auto">
+            <a href="{{ path('iHelp_categorie') }}"><img src="{{ asset('build/uploads/logo/jepeuxaider.png') }}"
+                class="rounded mx-auto d-block" alt="main verte"></a>
+        </div>
+        <div class="col-6 col-md-6 mx-auto">
+            <a href="{{ path('iNeedHelp_categorie') }}"><img src="{{ asset('build/uploads/logo/jaibesoindaide.png') }}"
+                class="rounded mx-auto d-block" alt="main rouge"></a>
+        </div>
+    </div>
+{%  endblock %}

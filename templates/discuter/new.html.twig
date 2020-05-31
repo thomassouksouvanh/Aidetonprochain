@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposer une conversation{% endblock %}
+
+{% block body %}
+
+    <h4 class="titlePage mt-5 mb-5">proposer une conversation</h4>
+
+
+    {{ include('discuter/_form.html.twig') }}
+
+    <a href="{{ path('discuter_index') }}">Voir les dernières conversations</a>
+
+
+{% endblock %}

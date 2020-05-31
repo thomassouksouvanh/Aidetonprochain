@@ -1,0 +1,52 @@
+<!--Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light mb-0 mt-0">
+    <a class="navbar-brand " href="{{path('homepage')}}"><i class="fas fa-home"></i></a>
+    <a class="navbar-brand " href="{{path('iHelp_categorie')}}">
+        <img src="{{ asset('build/uploads/logo/jepeuxaider.png') }}" class="logoNav" alt="logo je peux aider">
+    </a>
+    <a class="navbar-brand " href="{{path('iNeedHelp_categorie')}}" >
+        <img src="{{ asset('build/uploads/logo/jaibesoindaide.png') }}" class="logoNav" alt="logo j'ai besoin d'aide">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light">
+                    {% if app.user %}
+                        <img class="avatar-nav" src="{{ asset('/build/uploads/logo/logo-aidetonvoisin-inversé.png') }}" alt="nonconnecté"/>
+                    {% else %}
+                        <img class="avatar-nav-connect" src="{{ asset('/build/uploads/logo/Logo-aidetonvoisin.png') }}" alt="connecté"/>
+                    {% endif %}
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-2x"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                     aria-labelledby="navbarDropdownMenuLink-333">
+                    {% if app.user %}
+                    <a class="dropdown-item" href="{{ path('account_user',{'slug':app.user.slug}) }}">Mon profil</a>
+                    <hr>
+                    <a class="dropdown-item" href="{{path('app_logout')}}">Se Déconnecter</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{{path('app_login')}}">Se connecter</a>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<!--/.Navbar -->
+

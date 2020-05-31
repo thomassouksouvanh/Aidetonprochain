@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gaming{% endblock %}
+
+{% block body %}
+<h4 class="text-center mt-4">Categorie : gaming</h4>
+    <div class="card testimonial-card mt-4 mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col col-sm col-md-7 col-lg-8">
+                    <div class="text-muted">
+                        <p>Publié le :
+                            {{ gaming.createdAt|date('d-m-Y') }}
+                        {% if app.user and app.user is same as (gaming.user) %}
+                            <a href="{{ path('gaming_edit', {'slug': gaming.slug}) }}">
+                                <button class="btn btn-secondary ml-4">Editer</button>
+                            </a>
+                        </p>
+                    {% endif %}
+                    </div>
+                    <hr>
+                    <p class="card-title font-weight-bold">Titre de la partie de jeu :</p> {{ gaming.nom }}
+                    <hr>
+                    <p class="font-weight-bold">Support : </p>{{ gaming.type }}
+                    <hr>
+                    <p class="font-weight-bold">Lien du jeu : </p>
+                        <a href="{{ gaming.link }}" target="_blank">{{ gaming.link }}</a>
+                    <hr>
+                </div>
+                <div class="col col-sm col-md-4 col-lg-4">
+                    {% if gaming.user.avatar is not null%}
+                        <a href="{{ path('account_user',{'slug':gaming.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/images/avatar/'~ gaming.user.avatar) | imagine_filter('my_thumb') }}"
+                         class="d-block img-thumbnail mx-auto" alt="avatar" title="voir profil">
+                        </a>
+                    {% else %}
+                        <a href="{{ path('account_user',{'slug':gaming.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/logo/Logo.png') | imagine_filter('my_thumb') }}"
+                         class="d-block img-thumbnail mx-auto" alt="default" title="voir profil">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ path('gaming_index') }}">
+                            Retour à la liste de toutes les parties de jeux
+                        </a>
+                    </div>
+                </div>
+            {% if app.user %}
+            <div class="row">
+                <div class="col">
+                    <a href="{{ path('account_user',{'slug':app.user.slug}) }}">Retour à mon profil</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+

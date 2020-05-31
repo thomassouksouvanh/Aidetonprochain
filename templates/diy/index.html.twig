@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}activité index{% endblock %}
+
+{% block body %}
+    {% include('/default/bandeaujaibesoindaide.html.twig') %}
+<div class="row">
+    {% for diy in diys %}
+        <div class="col col-sm col-md-6 col-lg-4 col-xl-3 d-flex justify-content-around">
+            <div class="card {{ cycle(['odd','even'], loop.index0) }} m-4 " style="width: 15rem;">
+                {% if diy.user.avatar is not null %}
+                    <a href="{{ path('account_user',{'slug':diy.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/images/avatar/'~ diy.user.avatar) | imagine_filter('thumb') }}"
+                         class="card-img-avatar mx-auto mt-2" alt="user image" style="width: 100px" title="voir le profil">
+                    </a>
+                {% else %}
+                    <a href="{{ path('account_user',{'slug':diy.user.slug}) }}">
+                    <img src="{{ asset('build/uploads/logo/Logo.png') }}"
+                         class="card-img mx-auto mt-1" style="width: 100px;" alt="user image" title="voir le profil">
+                    </a>
+                {% endif %}
+                {% if app.user and app.user is same as (diy.user) %}
+                    <p class="control">
+                        <a href="{{ path('diy_edit', {'slug': diy.slug}) }}"><i class="fas fa-edit"></i></a>
+                        <a href="{{ path('diy_new') }}"><i class="fas fa-plus-circle"></i></a>
+                    </p>
+                {% endif %}
+                <p>
+                    <small class="text-muted ml-3">Publié le :
+                        {{ diy.createdAt|date('d-m-Y') }}
+                    </small>
+                    <a href="{{ path('diy_show', {'slug': diy.slug}) }}"><i class="fas fa-folder-open {{ cycle(['fa_odd','fa_even'], loop.index0) }} ml-2"></i></a>
+                </p>
+                 <div class="card-body">
+                    <h5 class="card-title">{{ diy.nom }}</h5>
+                        <p class="card-text mb-0">Description :</p>
+                        <p class="card-text mt-0">{{ diy.description }}</p>
+                        <p class="card-text mt-0">{{ diy.zip }}</p>
+                        <p class="card-text d-inline mt-0">
+                            <a href="{{ diy.link }}" target="blank">Voir l'activité</a>
+                        </p>
+                 </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="row">
+            <h3 class="text-center ml-5">Aucune activité enregistré</h3>
+        </div>
+    {% endfor %}
+</div>
+    <div class="row align-items-center justify-content-center">
+        {{ knp_pagination_render(diys) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    {% include 'partial/header.html.twig'%}
+    <div class="row">
+        <div class="col">
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="msgLog d-flex justify-content-center mt-4 mb-0">
+                        <p>Vous êtes déja loggé avec l'adresse {{ app.user.username }}</p><br>
+                    </div>
+                    <div class="msgLog d-flex justify-content-center mt-0 mb-3">
+                        <p>Voulez-vous, vous <a href="{{ path('app_logout') }}">déconnecter</a>?</p>
+                    </div>
+
+                {% endif %}
+
+                <h1 class="d-flex justify-content-center h3 mb-3font-weight-normal mt-3">Veuillez vous connecter</h1> <br>
+
+                <input class="formMain d-flex justify-content-center pl-2" type="email" value="{{ last_username }}"
+                       name="email" id="inputEmail"
+                       placeholder="  Email" autofocus>
+                <div class="error-message text-center"></div>
+
+                <input class="formMain d-flex justify-content-center mt-3 pl-2" type="password"
+                       name="password" id="inputPassword"
+                       placeholder=" Mot de passe" >
+                <div class="error-message text-center"></div>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}">
+
+                    <div class="checkbox mb-3 d-flex justify-content-center mt-1">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Se rappeler de moi
+                        </label>
+                    </div>
+                <a class="d-flex justify-content-center mt-1" href="{{ path('app_forgotten_password') }}">Mot de passe oublié?</a>
+                <a class="d-flex justify-content-center mt-1" href="{{ path('app_register') }}"> pas encore inscrit?</a>
+                <button class="btn continue d-flex justify-content-center mt-4" type="submit" id="submit">
+                    connexion
+                </button>
+            </form>
+        </div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}aide ton voisin home page!{% endblock %}
+
+{% block body %}
+    {% include 'partial/header.html.twig'%}
+        <div class="col">
+            <div class="article mt-4 mb-4">
+                <p> Le coronavirus n’épargne personne, c’est pourquoi il est nécessaire de nous entraider.
+                    Depuis le début de la crise, de nombreuses actions citoyennes solidaires ont fleuri.
+                    Le but de cette plateforme est d’encourager ce mouvement en permettant de mettre
+                    en contact plus facilement ceux désirant offrir de l’aide et ceux en ayant besoin.
+                </p>
+                <p> Vous pouvez aider les personnes dans le besoin que ce soit en vous déplaçant à leur place
+                    pour leurs courses ou promener leur chien ou encore plus simplement en leur offrant des conseils,
+                    des ateliers ou une conversation en ligne. L'objectif est de lutter contre l'ennui et la solitude.
+                    Nous pouvons aider à notre échelle.
+                </p>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-around">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card_path1">
+                    <img src="{{ asset('build/uploads/choisissez-une-option.png') }}" class="path1 mx-auto d-block" alt="choisissez-une-option">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card_path2">
+                    <img src="{{ asset('build/uploads/decouvrez.png') }}" class="path2 mx-auto d-block" alt="decouvrez">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card_path3">
+                    <img src="{{ asset('build/uploads/passez-a-laction.png') }}" class="path3 mx-auto d-block" alt="passez-a-laction">
+                </div>
+            </div>
+        </div>
+            <!---
+            <div>
+                <div6
+                    <a href="https://twitter.com/hashtag/AideTonVoisin">#AideTonVoisin</a>
+                </div>
+                    <p class="clearall"></p>
+            </div>
+            -->
+        <div class="row mt-4">
+            <div class=" col start mb-5">
+                <h5>
+                    <a href="{{ path ('choose_categorie') }}">Commencez l'expérience</a>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-center">
+                    Aidez le projet en faisant en don!
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="text-center">
+                    <a href="https://www.paypal.me/gaea21" target="blank">
+                        <img src="https://www.paypalobjects.com/fr_FR/CH/i/btn/btn_subscribeCC_LG.gif"
+                             alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="text-center"> ou rejoignez nous sur pour faire connaître le projet!
+                    <a class="helpDon" target="blank" href="https://www.facebook.com/AideTonVoisinGeneve/">
+                        <i class="fab fa-facebook-square fa-2x"></i>
+                    </a>
+
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <a href="{{ path('diclaimer') }}"><img src="{{ asset('build/uploads/banière-donnees-protegees2.jpg') }}"
+                    class="d-block w-100 mb-2" alt="bannière disclaimer">
+                </a>
+            </div>
+        </div>
+
+{% endblock %}
+
+
+
